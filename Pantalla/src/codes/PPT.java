@@ -155,9 +155,7 @@ public class PPT extends JFrame {
 					contador++;
 					contadorUsuario.setText(contador + "");
 				} else if(empate) {
-					contadorMachine++;
 					contadorMaquina.setText(contadorMachine + "");
-					contador++;
 					contadorUsuario.setText(contador + "");
 				} else {
 					contadorMachine++;
@@ -193,9 +191,7 @@ public class PPT extends JFrame {
 					contador++;
 					contadorUsuario.setText(contador + "");
 				} else if(empate) {
-					contadorMachine++;
 					contadorMaquina.setText(contadorMachine + "");
-					contador++;
 					contadorUsuario.setText(contador + "");
 				} else {
 					contadorMachine++;
@@ -230,9 +226,7 @@ public class PPT extends JFrame {
 					contador++;
 					contadorUsuario.setText(contador + "");
 				} else if(empate) {
-					contadorMachine++;
 					contadorMaquina.setText(contadorMachine + "");
-					contador++;
 					contadorUsuario.setText(contador + "");
 				} else {
 					contadorMachine++;

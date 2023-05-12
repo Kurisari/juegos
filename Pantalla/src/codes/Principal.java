@@ -59,6 +59,7 @@ public class Principal extends JFrame {
 		contentPane.add(botonIniciarSesion);
 		
 		JButton botonPPT = new JButton("PP&T");
+		
 		botonPPT.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonPPT.setBounds(358, 50, 130, 35);
 		contentPane.add(botonPPT);
@@ -141,5 +142,16 @@ public class Principal extends JFrame {
 				botonContinuar.setVisible(false);
 			}
 		});
+		
+		botonPPT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PPT frame2 = new PPT();
+				frame2.setVisible(true);
+				cerrar();
+			}
+		});
+	}
+	void cerrar() {
+		this.dispose();
 	}
 }
