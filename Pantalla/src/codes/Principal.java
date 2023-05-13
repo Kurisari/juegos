@@ -70,6 +70,7 @@ public class Principal extends JFrame {
 		contentPane.add(botonBM);
 		
 		JButton botonGato = new JButton("Gato");
+		
 		botonGato.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonGato.setBounds(914, 50, 130, 35);
 		contentPane.add(botonGato);
@@ -148,6 +149,12 @@ public class Principal extends JFrame {
 				PPT frame2 = new PPT();
 				frame2.setVisible(true);
 				cerrar();
+			}
+		});
+		
+		botonGato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 	}
