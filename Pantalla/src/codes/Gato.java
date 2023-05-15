@@ -157,9 +157,6 @@ public class Gato extends JFrame {
 		botonIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarTablero(tablero);
-		        
-		        char jugadorActual = jugadorAleatorio();
-		        System.out.printf("El jugador que inicia es: %c\n", jugadorActual);
 			}
 		});
 		
