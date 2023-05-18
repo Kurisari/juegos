@@ -10,10 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -26,7 +24,6 @@ public class Gato extends JFrame {
 	private static char jugador_x = 'X';
 	private static char jugador_o = 'O';
 	private static char vacio = ' ';
-	private static char jugador_cpu = jugador_o;
 	private char[][] tablero = new char[FILAS][COLUMNAS];
 	private static int conteoGanar = 3;
 	int contadorPartidas = 0;
