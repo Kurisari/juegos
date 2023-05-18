@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ public class Gato extends JFrame {
 	private static char jugador_cpu = jugador_o;
 	private char[][] tablero = new char[FILAS][COLUMNAS];
 	private static int conteoGanar = 3;
+	int contadorPartidas = 0;
 
 	/**
 	 * Launch the application.
@@ -48,7 +50,7 @@ public class Gato extends JFrame {
 	 * Create the frame.
 	 */
 	public Gato() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\crisa\\Downloads\\consola-de-juego.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\\\Users\\\\crisa\\\\workspace\\\\juegos\\\\juegos\\\\Pantalla\\\\imgs\\consola-de-juego.png"));
 		setTitle("Gato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1152 , 648);
@@ -59,11 +61,11 @@ public class Gato extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton botonIniciarSesion = new JButton("Iniciar");
+		JButton botonIniciar = new JButton("Iniciar");
 		
-		botonIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonIniciarSesion.setBounds(70, 50, 130, 35);
-		contentPane.add(botonIniciarSesion);
+		botonIniciar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		botonIniciar.setBounds(70, 50, 130, 35);
+		contentPane.add(botonIniciar);
 		
 		JButton botonPPT = new JButton("PP&T");
 		
@@ -82,59 +84,68 @@ public class Gato extends JFrame {
 		botonGato.setBounds(914, 50, 130, 35);
 		contentPane.add(botonGato);
 		
-		JButton pos1 = new JButton("");
-		pos1.setEnabled(false);
-		pos1.setFont(new Font("Tahoma", Font.BOLD, 90));
-		pos1.setBounds(358, 139, 130, 130);
-		contentPane.add(pos1);
+		JButton pos11 = new JButton("");
 		
-		JButton pos2 = new JButton("");
-		pos2.setEnabled(false);
-		pos2.setBounds(498, 139, 130, 130);
-		pos2.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos2);
+		pos11.setEnabled(false);
+		pos11.setFont(new Font("Tahoma", Font.BOLD, 90));
+		pos11.setBounds(358, 139, 130, 130);
+		contentPane.add(pos11);
 		
-		JButton pos3 = new JButton("");
-		pos3.setEnabled(false);
-		pos3.setBounds(638, 139, 130, 130);
-		pos3.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos3);
+		JButton pos21 = new JButton("");
 		
-		JButton pos4 = new JButton("");
-		pos4.setEnabled(false);
-		pos4.setBounds(358, 279, 130, 130);
-		pos4.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos4);
+		pos21.setEnabled(false);
+		pos21.setBounds(498, 139, 130, 130);
+		pos21.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos21);
 		
-		JButton pos5 = new JButton("");
-		pos5.setEnabled(false);
-		pos5.setBounds(498, 279, 130, 130);
-		pos5.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos5);
+		JButton pos31 = new JButton("");
 		
-		JButton pos6 = new JButton("");
-		pos6.setEnabled(false);
-		pos6.setBounds(638, 279, 130, 130);
-		pos6.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos6);
+		pos31.setEnabled(false);
+		pos31.setBounds(638, 139, 130, 130);
+		pos31.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos31);
 		
-		JButton pos7 = new JButton("");
-		pos7.setEnabled(false);
-		pos7.setBounds(358, 419, 130, 130);
-		pos7.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos7);
+		JButton pos12 = new JButton("");
 		
-		JButton pos8 = new JButton("");
-		pos8.setEnabled(false);
-		pos8.setBounds(498, 419, 130, 130);
-		pos8.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos8);
+		pos12.setEnabled(false);
+		pos12.setBounds(358, 279, 130, 130);
+		pos12.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos12);
 		
-		JButton pos9 = new JButton("");
-		pos9.setEnabled(false);
-		pos9.setBounds(638, 419, 130, 130);
-		pos9.setFont(new Font("Tahoma", Font.BOLD, 90));
-		contentPane.add(pos9);
+		JButton pos22 = new JButton("");
+		
+		pos22.setEnabled(false);
+		pos22.setBounds(498, 279, 130, 130);
+		pos22.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos22);
+		
+		JButton pos32 = new JButton("");
+		
+		pos32.setEnabled(false);
+		pos32.setBounds(638, 279, 130, 130);
+		pos32.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos32);
+		
+		JButton pos13 = new JButton("");
+		
+		pos13.setEnabled(false);
+		pos13.setBounds(358, 419, 130, 130);
+		pos13.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos13);
+		
+		JButton pos23 = new JButton("");
+		
+		pos23.setEnabled(false);
+		pos23.setBounds(498, 419, 130, 130);
+		pos23.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos23);
+		
+		JButton pos33 = new JButton("");
+		
+		pos33.setEnabled(false);
+		pos33.setBounds(638, 419, 130, 130);
+		pos33.setFont(new Font("Tahoma", Font.BOLD, 90));
+		contentPane.add(pos33);
 		
 		JButton tuTurno = new JButton("Tu Turno");
 		tuTurno.setForeground(new Color(0, 0, 0));
@@ -154,60 +165,902 @@ public class Gato extends JFrame {
 		partidasGanadas.setBounds(70, 279, 64, 27);
 		contentPane.add(partidasGanadas);
 		
-		botonIniciarSesion.addActionListener(new ActionListener() {
+		botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarTablero(tablero);
+				pos11.setEnabled(true);
+				pos21.setEnabled(true);
+				pos31.setEnabled(true);
+				pos12.setEnabled(true);
+				pos22.setEnabled(true);
+				pos32.setEnabled(true);
+				pos13.setEnabled(true);
+				pos23.setEnabled(true);
+				pos33.setEnabled(true);
+				pos11.setText("");
+				pos21.setText("");
+				pos31.setText("");
+				pos12.setText("");
+				pos22.setText("");
+				pos32.setText("");
+				pos13.setText("");
+				pos23.setText("");
+				pos33.setText("");
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		}); 
+		
+		pos11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos11.setText(jugador_x + "");
+				colocarPieza(0, 0, jugador_x, tablero);
+				pos11.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
 			}
 		});
 		
+		pos21.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos21.setText(jugador_x + "");
+				colocarPieza(0, 1, jugador_x, tablero);
+				pos21.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos31.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos31.setText(jugador_x + "");
+				colocarPieza(0, 2, jugador_x, tablero);
+				pos31.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos12.setText(jugador_x + "");
+				colocarPieza(1, 0, jugador_x, tablero);
+				pos12.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos22.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos22.setText(jugador_x + "");
+				colocarPieza(1, 1, jugador_x, tablero);
+				pos22.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos32.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos32.setText(jugador_x + "");
+				colocarPieza(1, 2, jugador_x, tablero);
+				pos32.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos13.setText(jugador_x + "");
+				colocarPieza(2, 0, jugador_x, tablero);
+				pos13.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos23.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos23.setText(jugador_x + "");
+				colocarPieza(2, 1, jugador_x, tablero);
+				pos23.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
+		
+		pos33.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char jugadorActual = jugador_o;
+				jugadorActual = jugador_x;
+				int[] coordenadas = new int[2];
+				pos33.setText(jugador_x + "");
+				colocarPieza(2, 2, jugador_x, tablero);
+				pos33.setEnabled(false);
+				tuTurno.setBackground(new Color(255, 0, 0));
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+					return;
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+			        return;
+	            }
+				jugadorActual = jugador_o;
+				coordenadas = elegirCoordenadasCpu(jugador_o, tablero);
+				colocarPieza(coordenadas[1], coordenadas[0], jugador_o, tablero);
+				if(coordenadas[0] == 0 && coordenadas[1] == 0) {
+					pos11.setText(jugador_o + "");
+					pos11.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 1) {
+					pos12.setText(jugador_o + "");
+					pos12.setEnabled(false);
+				} else if(coordenadas[0] == 0 && coordenadas[1] == 2) {
+					pos13.setText(jugador_o + "");
+					pos13.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 0) {
+					pos21.setText(jugador_o + "");
+					pos21.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 1) {
+					pos22.setText(jugador_o + "");
+					pos22.setEnabled(false);
+				} else if(coordenadas[0] == 1 && coordenadas[1] == 2) {
+					pos23.setText(jugador_o + "");
+					pos23.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 0) {
+					pos31.setText(jugador_o + "");
+					pos31.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 1) {
+					pos32.setText(jugador_o + "");
+					pos32.setEnabled(false);
+				} else if(coordenadas[0] == 2 && coordenadas[1] == 2) {
+					pos33.setText(jugador_o + "");
+					pos33.setEnabled(false);
+				}
+				if (comprobarSiGana(jugadorActual, tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "El jugador " + jugadorActual + " gana");
+	                pos11.setEnabled(false);
+					pos21.setEnabled(false);
+					pos31.setEnabled(false);
+					pos12.setEnabled(false);
+					pos22.setEnabled(false);
+					pos32.setEnabled(false);
+					pos13.setEnabled(false);
+					pos23.setEnabled(false);
+					pos33.setEnabled(false);
+					if(jugadorActual == jugador_x) {
+						contadorPartidas++;
+						partidasGanadas.setText(contadorPartidas+"");
+					}
+	            } else if (empate(tablero)) {
+	                JFrame jFrame = new JFrame();
+			        JOptionPane.showMessageDialog(jFrame, "Empate");
+	            }
+				tuTurno.setBackground(new Color(0, 255, 0));
+			}
+		});
 	}
-	public static char[][] clonarMatriz(char[][] tableroOriginal){
-		char[][] copiaMatriz = new char[FILAS][COLUMNAS];
-        for (int i = 0; i < FILAS; i++) {
-            for (int j = 0; j < COLUMNAS; j++) {
-                copiaMatriz[i][j] = tableroOriginal[i][j];
+	
+	static char[][] clonarMatriz(char[][] tableroOriginal) {
+        char[][] copia = new char[FILAS][COLUMNAS];
+        for (int y = 0; y < FILAS; y++) {
+            for (int x = 0; x < COLUMNAS; x++) {
+                copia[y][x] = tableroOriginal[y][x];
             }
         }
-        return copiaMatriz;
-	}
-	public static void limpiarTablero(char[][] tablero){
-		for(int i = 0; i < FILAS; i++) {
-			for(int j = 0; j < COLUMNAS; j++) {
-				tablero[i][j] = vacio;
-			}
-		}
-	}
-	public static boolean coordenadasVacias(int y, int x, char[][] tablero) {
-		return tablero[y][x] == vacio;
-	}
-	public static void colocarPieza(int y, int x, char ficha, char[][] tablero) {
-		tablero[y][x] = ficha;
-	}
-	public static int contarArriba(int x, int y, char jugador, char[][] tablero) {
-		int yInicio = (y - conteoGanar >= 0) ? y - conteoGanar + 1 : 0;
-		int contador = 0;
-		for(; yInicio <= y; yInicio++) {
-			if(tablero[yInicio][x] == jugador) {
-				contador++;
-			} else {
-				contador = 0;
-			}
-		}
-		return contador;
-	}
-	public static int contarDerecha(int x, int y, char jugador, char[][] tablero) {
-		int xFin = (x - conteoGanar >= 0) ? x - conteoGanar + 1 : 0;
-		int contador = 0;
-		for(; xFin <= y; x++) {
-			if(tablero[y][x] == jugador) {
-				contador++;
-			} else {
-				contador = 0;
-			}
-		}
-		return contador;
-	}
-	public static int contarArribaDerecha(int x, int y, char jugador, char[][] tablero) {
+        return copia;
+    }
+
+    static void limpiarTablero(char[][] tablero) {
+        for (int y = 0; y < FILAS; y++) {
+            for (int x = 0; x < COLUMNAS; x++) {
+                tablero[y][x] = vacio;
+            }
+        }
+    }
+
+    static void imprimirTablero(char[][] tablero) {
+        System.out.print("\n");
+        int y;
+        int x;
+        System.out.print("| ");
+        for (x = 0; x < COLUMNAS; x++) {
+            System.out.printf("|%d", x + 1);
+        }
+        System.out.print("|\n");
+        for (y = 0; y < FILAS; y++) {
+            System.out.printf("|%d", y + 1);
+            for (x = 0; x < COLUMNAS; x++) {
+                System.out.printf("|%c", tablero[y][x]);
+            }
+            System.out.print("|\n");
+        }
+    }
+
+    static boolean coordenadasVacias(int y, int x, char[][] tablero) {
+        return tablero[y][x] == vacio;
+    }
+
+    static void colocarPieza(int y, int x, char pieza, char[][] tablero) {
+        if (y < 0 || y >= FILAS) {
+            System.out.print("Fila incorrecta");
+            return;
+        }
+
+        if (x < 0 || x >= COLUMNAS) {
+            System.out.print("Columna incorrecta");
+            return;
+        }
+        if (pieza != jugador_o && pieza != jugador_x) {
+            System.out.printf("La pieza debe ser %c o %c", jugador_o, jugador_x);
+            return;
+        }
+        if (!coordenadasVacias(y, x, tablero)) {
+            System.out.print("Coordenadas ya ocupadas");
+            return;
+        }
+        tablero[y][x] = pieza;
+    }
+
+    static int contarHaciaArriba(int x, int y, char jugador, char[][] tablero) {
+        int yInicio = (y - conteoGanar >= 0) ? y - conteoGanar + 1 : 0;
+        int contador = 0;
+        for (; yInicio <= y; yInicio++) {
+            if (tablero[yInicio][x] == jugador) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+        }
+        return contador;
+    }
+
+    static int contarHaciaDerecha(int x, int y, char jugador, char[][] tablero) {
+        int xFin = (x + conteoGanar < COLUMNAS) ? x + conteoGanar - 1 : COLUMNAS - 1;
+        int contador = 0;
+        for (; x <= xFin; x++) {
+            if (tablero[y][x] == jugador) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+        }
+        return contador;
+    }
+
+    static int contarHaciaArribaDerecha(int x, int y, char jugador, char[][] tablero) {
         int xFin = (x + conteoGanar < COLUMNAS) ? x + conteoGanar - 1 : COLUMNAS - 1;
         int yInicio = (y - conteoGanar >= 0) ? y - conteoGanar + 1 : 0;
         int contador = 0;
@@ -222,7 +1075,8 @@ public class Gato extends JFrame {
         }
         return contador;
     }
-	public static int contarAbajoDerecha(int x, int y, char jugador, char[][] tablero) {
+
+    static int contarHaciaAbajoDerecha(int x, int y, char jugador, char[][] tablero) {
         int xFin = (x + conteoGanar < COLUMNAS) ? x + conteoGanar - 1 : COLUMNAS - 1;
         int yFin = (y + conteoGanar < FILAS) ? y + conteoGanar - 1 : FILAS - 1;
         int contador = 0;
@@ -237,50 +1091,70 @@ public class Gato extends JFrame {
         }
         return contador;
     }
-	public static boolean comprobarGana(char jugador, char[][] tablero) {
-		for(int y = 0; y < FILAS; y++) {
-			for(int x = 0; x < COLUMNAS; x++) {
-				if(contarArriba(x, y, jugador, tablero) >= conteoGanar ||
-                        contarDerecha(x, y, jugador, tablero) >= conteoGanar ||
-                        contarArribaDerecha(x, y, jugador, tablero) >= conteoGanar ||
-                        contarAbajoDerecha(x, y, jugador, tablero) >= conteoGanar) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	public static char oponente(char jugador) {
-		if(jugador == jugador_o) return jugador_x;
-		else return jugador_o;
-	}
-	public static boolean empate(char[][] tableroOriginal) {
-		for(int y = 0; y < FILAS; y++) {
-			for(int x = 0; x < COLUMNAS; x++) {
-				if(tableroOriginal[y][x] == vacio) return false; 
-			}
-		}
-		return true;
-	}
-	public static int aleatorio(int min, int max) {
-		return ThreadLocalRandom.current().nextInt(min, max + 1);
-	}
-	public static int[] coordenadasAleatorias(char jugador, char[][] tableroOriginal) {
-		int x, y;
-		do {
-			x = aleatorio(0, COLUMNAS -1);
-			y = aleatorio(0, FILAS - 1);
-		} while(!coordenadasVacias(y, x, tableroOriginal));
-		return new int[] {x, y};
-	}
-	public static int[] coordenadasGanar(char jugador, char[][] tableroOriginal) {
+
+    static boolean comprobarSiGana(char jugador, char[][] tablero) {
+        int y;
+        for (y = 0; y < FILAS; y++) {
+            int x;
+            for (x = 0; x < COLUMNAS; x++) {
+                if (
+                        contarHaciaArriba(x, y, jugador, tablero) >= conteoGanar ||
+                                contarHaciaDerecha(x, y, jugador, tablero) >= conteoGanar ||
+                                contarHaciaArribaDerecha(x, y, jugador, tablero) >= conteoGanar ||
+                                contarHaciaAbajoDerecha(x, y, jugador, tablero) >= conteoGanar) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    static char oponenteDe(char jugador) {
+        if (jugador == jugador_o) {
+            return jugador_x;
+        } else {
+            return jugador_o;
+        }
+    }
+
+    static void hablar(String mensaje, char jugador) {
+        System.out.printf("\nCPU (%c) dice: %s\n\n", jugador, mensaje);
+    }
+
+    static boolean empate(char[][] tableroOriginal) {
+        int y;
+        for (y = 0; y < FILAS; y++) {
+            int x;
+            for (x = 0; x < COLUMNAS; x++) {
+                if (tableroOriginal[y][x] == vacio) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static int aleatorioEnRango(int minimo, int maximo) {
+        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+    }
+
+    static int[] obtenerCoordenadasAleatorias(char jugador, char[][] tableroOriginal) {
+        int x, y;
+        do {
+            x = aleatorioEnRango(0, COLUMNAS - 1);
+            y = aleatorioEnRango(0, FILAS - 1);
+        } while (!coordenadasVacias(y, x, tableroOriginal));
+        return new int[]{x, y};
+    }
+
+    static int[] coordenadasParaGanar(char jugador, char[][] tableroOriginal) {
         int y, x;
         for (y = 0; y < FILAS; y++) {
             for (x = 0; x < COLUMNAS; x++) {
                 char[][] copiaTablero = clonarMatriz(tableroOriginal);
                 if (coordenadasVacias(y, x, copiaTablero)) {
                     colocarPieza(y, x, jugador, copiaTablero);
-                    if (comprobarGana(jugador, copiaTablero)) {
+                    if (comprobarSiGana(jugador, copiaTablero)) {
                         return new int[]{x, y};
                     }
                 }
@@ -288,27 +1162,28 @@ public class Gato extends JFrame {
         }
         return new int[]{-1, -1};
     }
-	public static int contarSinSaberCoordenadas(char jugador, char[][] copiaTablero) {
+
+    static int contarSinSaberCoordenadas(char jugador, char[][] copiaTablero) {
         int conteoMayor = 0;
         int x, y;
         for (y = 0; y < FILAS; y++) {
             for (x = 0; x < COLUMNAS; x++) {
                 int conteoTemporal;
-                conteoTemporal = contarArriba(x, y, jugador, copiaTablero);
+                conteoTemporal = contarHaciaArriba(x, y, jugador, copiaTablero);
                 if (conteoTemporal > conteoMayor) {
                     conteoMayor = conteoTemporal;
                 }
-                conteoTemporal = contarArribaDerecha(x, y, jugador, copiaTablero);
-                if (conteoTemporal > conteoMayor) {
-                    conteoMayor = conteoTemporal;
-                }
-
-                conteoTemporal = contarDerecha(x, y, jugador, copiaTablero);
+                conteoTemporal = contarHaciaArribaDerecha(x, y, jugador, copiaTablero);
                 if (conteoTemporal > conteoMayor) {
                     conteoMayor = conteoTemporal;
                 }
 
-                conteoTemporal = contarAbajoDerecha(x, y, jugador, copiaTablero);
+                conteoTemporal = contarHaciaDerecha(x, y, jugador, copiaTablero);
+                if (conteoTemporal > conteoMayor) {
+                    conteoMayor = conteoTemporal;
+                }
+
+                conteoTemporal = contarHaciaAbajoDerecha(x, y, jugador, copiaTablero);
                 if (conteoTemporal > conteoMayor) {
                     conteoMayor = conteoTemporal;
                 }
@@ -316,7 +1191,8 @@ public class Gato extends JFrame {
         }
         return conteoMayor;
     }
-	public static int[] coordenadasParaMayorPuntaje(char jugador, char[][] tableroOriginal) {
+
+    static int[] coordenadasParaMayorPuntaje(char jugador, char[][] tableroOriginal) {
         int y, x;
         int conteoMayor = 0,
                 xConteoMayor = -1,
@@ -327,6 +1203,7 @@ public class Gato extends JFrame {
                 if (!coordenadasVacias(y, x, copiaTablero)) {
                     continue;
                 }
+                // Colocamos y contamos el puntaje
                 colocarPieza(y, x, jugador, copiaTablero);
                 int conteoTemporal = contarSinSaberCoordenadas(jugador, copiaTablero);
                 if (conteoTemporal > conteoMayor) {
@@ -338,18 +1215,21 @@ public class Gato extends JFrame {
         }
         return new int[]{conteoMayor, xConteoMayor, yConteoMayor};
     }
-	public static int[] elegirCoordenadasCpu(char jugador, char[][] tablero) {
+
+    static int[] elegirCoordenadasCpu(char jugador, char[][] tablero) {
+
         int y, x, conteoJugador, conteoOponente;
         int yOponente, xOponente;
         int[] coordenadas = new int[2];
-        char oponente = oponente(jugador);
-        coordenadas = coordenadasGanar(jugador, tablero);
+        char oponente = oponenteDe(jugador);
+        // 1
+        coordenadas = coordenadasParaGanar(jugador, tablero);
         x = coordenadas[0];
         y = coordenadas[1];
         if (y != -1 && x != -1) {
             return new int[]{x, y};
         }
-        coordenadas = coordenadasGanar(oponente, tablero);
+        coordenadas = coordenadasParaGanar(oponente, tablero);
         x = coordenadas[0];
         y = coordenadas[1];
         if (y != -1 && x != -1) {
@@ -371,11 +1251,12 @@ public class Gato extends JFrame {
         if (coordenadasVacias(0, 0, tablero)) {
             return new int[]{0, 0};
         }
-        coordenadas = coordenadasAleatorias(jugador, tablero);
+        coordenadas = obtenerCoordenadasAleatorias(jugador, tablero);
         return coordenadas;
     }
-	public static char jugadorAleatorio() {
-        if (aleatorio(0, 1) == 0) {
+
+    static char jugadorAleatorio() {
+        if (aleatorioEnRango(0, 1) == 0) {
             return jugador_o;
         } else {
             return jugador_x;
