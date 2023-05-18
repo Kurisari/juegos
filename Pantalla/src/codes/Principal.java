@@ -42,7 +42,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\crisa\\Downloads\\consola-de-juego.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\\\Users\\\\crisa\\\\workspace\\\\juegos\\\\juegos\\\\Pantalla\\\\imgs\\consola-de-juego.png"));
 		setTitle("Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1152 , 648);
@@ -154,7 +154,9 @@ public class Principal extends JFrame {
 		
 		botonGato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Gato frame3 = new Gato();
+				frame3.setVisible(true);
+				cerrar();
 			}
 		});
 	}

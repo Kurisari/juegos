@@ -42,7 +42,7 @@ public class PPT extends JFrame {
 	 */
 	public PPT() {
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\crisa\\Downloads\\consola-de-juego.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\\\Users\\\\crisa\\\\workspace\\\\juegos\\\\juegos\\\\Pantalla\\\\imgs\\consola-de-juego.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Piedra Papel o Tijera");
 		setBounds(100, 100, 1152 , 648);
