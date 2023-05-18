@@ -59,6 +59,7 @@ public class PPT extends JFrame {
 		contentPane.add(botonIniciarSesion);
 		
 		JButton botonPPT = new JButton("PP&T");
+		botonPPT.setEnabled(false);
 		botonPPT.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonPPT.setBounds(358, 50, 130, 35);
 		contentPane.add(botonPPT);
@@ -69,6 +70,7 @@ public class PPT extends JFrame {
 		contentPane.add(botonBM);
 		
 		JButton botonGato = new JButton("Gato");
+		
 		botonGato.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonGato.setBounds(914, 50, 130, 35);
 		contentPane.add(botonGato);
@@ -128,6 +130,19 @@ public class PPT extends JFrame {
 		contadorMaquina.setBounds(707, 471, 198, 102);
 		contentPane.add(contadorMaquina);
 		
+		JButton botonHome = new JButton("");
+		
+		botonHome.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\casa (1).png"));
+		botonHome.setBounds(10, 551, 50, 50);
+		contentPane.add(botonHome);
+		
+		botonHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Principal frame3 = new Principal();
+				frame3.setVisible(true);
+				cerrar();
+			}
+		});
 		
 		botonPiedra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -234,5 +249,17 @@ public class PPT extends JFrame {
 				}
 			}
 		});
+		
+		botonGato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Gato frame3 = new Gato();
+				frame3.setVisible(true);
+				cerrar();
+			}
+		});
+		
+	}
+	void cerrar() {
+		this.dispose();
 	}
 }

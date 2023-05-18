@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Gato extends JFrame {
 
@@ -69,6 +70,7 @@ public class Gato extends JFrame {
 		
 		JButton botonPPT = new JButton("PP&T");
 		
+		
 		botonPPT.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonPPT.setBounds(358, 50, 130, 35);
 		contentPane.add(botonPPT);	
@@ -79,6 +81,7 @@ public class Gato extends JFrame {
 		contentPane.add(botonBM);
 		
 		JButton botonGato = new JButton("Gato");
+		botonGato.setEnabled(false);
 		
 		botonGato.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonGato.setBounds(914, 50, 130, 35);
@@ -165,6 +168,12 @@ public class Gato extends JFrame {
 		partidasGanadas.setBounds(70, 279, 64, 27);
 		contentPane.add(partidasGanadas);
 		
+		JButton botonHome = new JButton("");
+		
+		botonHome.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\casa (1).png"));
+		botonHome.setBounds(10, 551, 50, 50);
+		contentPane.add(botonHome);
+		
 		botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarTablero(tablero);
@@ -189,6 +198,14 @@ public class Gato extends JFrame {
 				tuTurno.setBackground(new Color(0, 255, 0));
 			}
 		}); 
+		
+		botonHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Principal frame3 = new Principal();
+				frame3.setVisible(true);
+				cerrar();
+			}
+		});
 		
 		pos11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -971,6 +988,14 @@ public class Gato extends JFrame {
 				tuTurno.setBackground(new Color(0, 255, 0));
 			}
 		});
+		
+		botonPPT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PPT frame2 = new PPT();
+				frame2.setVisible(true);
+				cerrar();
+			}
+		});
 	}
 	
 	static char[][] clonarMatriz(char[][] tableroOriginal) {
@@ -1262,4 +1287,8 @@ public class Gato extends JFrame {
             return jugador_x;
         }
     }
+    
+    void cerrar() {
+		this.dispose();
+	}
 }
