@@ -20,6 +20,7 @@ public class PPT extends JFrame {
 	private JPanel contentPane;
 	int contador = 0;
 	int contadorMachine = 0;
+	int vecesJugadas = 0;
 
 	/**
 	 * Launch the application.
@@ -148,6 +149,7 @@ public class PPT extends JFrame {
 		
 		botonPiedra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vecesJugadas++;
 				boolean ganador = false;
 				boolean empate = false;
 				
@@ -184,6 +186,7 @@ public class PPT extends JFrame {
 		
 		botonPapel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vecesJugadas++;
 				eleccionUsuario.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\muestra\\papel.png"));
 				boolean ganador = false;
 				boolean empate = false;
@@ -219,6 +222,7 @@ public class PPT extends JFrame {
 		
 		botonTijera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vecesJugadas++;
 				eleccionUsuario.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\muestra\\tijera.png"));
 				boolean ganador = false;
 				boolean empate = false;

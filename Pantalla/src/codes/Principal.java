@@ -57,12 +57,6 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton botonIniciarSesion = new JButton("Iniciar Sesión");
-		
-		botonIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonIniciarSesion.setBounds(70, 50, 130, 35);
-		contentPane.add(botonIniciarSesion);
-		
 		JButton botonPPT = new JButton("PP&T");
 		
 		botonPPT.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -84,25 +78,25 @@ public class Principal extends JFrame {
 		JButton botonNuevo = new JButton("Nuevo");
 		
 		botonNuevo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonNuevo.setBounds(212, 100, 130, 35);
+		botonNuevo.setBounds(92, 50, 130, 35);
 		contentPane.add(botonNuevo);
 		
 		JButton botonCargar = new JButton("Cargar");
 		
 		botonCargar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonCargar.setBounds(768, 100, 130, 35);
+		botonCargar.setBounds(493, 112, 130, 35);
 		contentPane.add(botonCargar);
 		
 		JLabel txtUsuario = new JLabel("Usuario");
 		txtUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		txtUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
-		txtUsuario.setBounds(511, 212, 130, 35);
+		txtUsuario.setBounds(493, 212, 130, 35);
 		contentPane.add(txtUsuario);
 		txtUsuario.setVisible(false);
 		
 		cuadroUsuario = new JTextField();
 		cuadroUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		cuadroUsuario.setBounds(511, 247, 130, 35);
+		cuadroUsuario.setBounds(493, 247, 130, 35);
 		contentPane.add(cuadroUsuario);
 		cuadroUsuario.setColumns(10);
 		cuadroUsuario.setVisible(false);
@@ -113,20 +107,20 @@ public class Principal extends JFrame {
 			}
 		});
 		botonContinuar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonContinuar.setBounds(511, 292, 130, 35);
+		botonContinuar.setBounds(493, 292, 130, 35);
 		contentPane.add(botonContinuar);
 		botonContinuar.setVisible(false);
 		
 		JLabel txtBuscarUsuario = new JLabel("Buscar Usuario");
 		txtBuscarUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		txtBuscarUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
-		txtBuscarUsuario.setBounds(511, 212, 130, 35);
+		txtBuscarUsuario.setBounds(493, 212, 130, 35);
 		contentPane.add(txtBuscarUsuario);
 		txtBuscarUsuario.setVisible(false);
 		
 		JButton botonContinuar2 = new JButton("Continuar");
 		botonContinuar2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonContinuar2.setBounds(511, 292, 130, 35);
+		botonContinuar2.setBounds(493, 292, 130, 35);
 		contentPane.add(botonContinuar2);
 		botonContinuar2.setVisible(false);
 		
@@ -174,11 +168,7 @@ public class Principal extends JFrame {
 			}
 		});
 		
-		botonIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loadConfig();
-			}
-		});
+		
 	}
 
 	Properties config = new Properties();

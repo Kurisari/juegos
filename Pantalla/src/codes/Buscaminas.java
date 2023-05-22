@@ -22,6 +22,7 @@ public int ancho=10;
 public int alto=8;
 public  JButton Botones[][]=new JButton [ancho][alto];
 public  String [][] elArray =new String [ancho][alto];
+int vecesJugadas = 0;
 
 
 public static void main (String [] args){
@@ -121,7 +122,7 @@ private void jbInit() throws Exception  {
     });
   cargarTablero();
   colocarBomba(getAncho());
-  //comprueba();
+  comprueba();
 
   this.setVisible(true);  
 
@@ -130,6 +131,7 @@ private void jbInit() throws Exception  {
   ocultaBotones();
 }
 private void jButton1_actionPerformed(ActionEvent e)  {
+	vecesJugadas++;
 for (int i=0;i<ancho;i++){
     for (int z=0;z<alto;z++){
       elArray[i][z]=" ";

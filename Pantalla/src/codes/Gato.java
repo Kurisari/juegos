@@ -27,6 +27,7 @@ public class Gato extends JFrame {
 	private char[][] tablero = new char[FILAS][COLUMNAS];
 	private static int conteoGanar = 3;
 	int contadorPartidas = 0;
+	int vecesJugadas = 0;
 
 	/**
 	 * Launch the application.
@@ -188,6 +189,7 @@ public class Gato extends JFrame {
 		
 		botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vecesJugadas++;
 				limpiarTablero(tablero);
 				pos11.setEnabled(true);
 				pos21.setEnabled(true);
