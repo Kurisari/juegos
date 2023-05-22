@@ -8,11 +8,16 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
@@ -53,6 +58,7 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton botonIniciarSesion = new JButton("Iniciar Sesión");
+		
 		botonIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonIniciarSesion.setBounds(70, 50, 130, 35);
 		contentPane.add(botonIniciarSesion);
@@ -167,7 +173,27 @@ public class Principal extends JFrame {
 				cerrar();
 			}
 		});
+		
+		botonIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loadConfig();
+			}
+		});
 	}
+
+	Properties config = new Properties();
+    InputStream configInput = null;
+    public void loadConfig(){
+        try{
+            configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\config.properties");
+            config.load(configInput);
+            System.out.println(config.getProperty("password"));
+            System.out.println(config.getProperty("name"));
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 	void cerrar() {
 		this.dispose();
 	}
