@@ -64,6 +64,7 @@ public class Principal extends JFrame {
 		contentPane.add(botonPPT);
 		
 		botonBM = new JButton("Buscaminas");
+		
 		botonBM.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonBM.setBounds(626, 50, 130, 35);
 		contentPane.add(botonBM);
@@ -155,6 +156,14 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Gato frame3 = new Gato();
 				frame3.setVisible(true);
+				cerrar();
+			}
+		});
+		
+		botonBM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Buscaminas frame4 = new Buscaminas();
+				frame4.setVisible(true);
 				cerrar();
 			}
 		});

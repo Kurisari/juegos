@@ -73,6 +73,7 @@ public class Gato extends JFrame {
 		contentPane.add(botonPPT);	
 		
 		JButton botonBM = new JButton("Buscaminas");
+		
 		botonBM.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonBM.setBounds(626, 50, 130, 35);
 		contentPane.add(botonBM);
@@ -170,6 +171,14 @@ public class Gato extends JFrame {
 		botonHome.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\casa (1).png"));
 		botonHome.setBounds(10, 551, 50, 50);
 		contentPane.add(botonHome);
+		
+		botonBM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Buscaminas frame4 = new Buscaminas();
+				frame4.setVisible(true);
+				cerrar();
+			}
+		});
 		
 		botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
