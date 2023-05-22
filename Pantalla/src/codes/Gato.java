@@ -62,7 +62,7 @@ public class Gato extends JFrame {
 		JButton botonIniciar = new JButton("Iniciar");
 		
 		botonIniciar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonIniciar.setBounds(70, 50, 130, 35);
+		botonIniciar.setBounds(70, 316, 130, 35);
 		contentPane.add(botonIniciar);
 		
 		JButton botonPPT = new JButton("PP&T");
@@ -171,6 +171,12 @@ public class Gato extends JFrame {
 		botonHome.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\casa (1).png"));
 		botonHome.setBounds(10, 551, 50, 50);
 		contentPane.add(botonHome);
+		
+		JButton botonGuardar = new JButton("Guardar");
+		
+		botonGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		botonGuardar.setBounds(70, 50, 130, 35);
+		contentPane.add(botonGuardar);
 		
 		botonBM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1000,6 +1006,12 @@ public class Gato extends JFrame {
 				PPT frame2 = new PPT();
 				frame2.setVisible(true);
 				cerrar();
+			}
+		});
+		
+		botonGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 	}

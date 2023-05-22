@@ -53,8 +53,8 @@ private void jbInit() throws Exception  {
   jButton1.setBounds(71, 50, 125, 40);
   getContentPane().add(jButton1);
   
-  jButton1.setText("START");
-  jButton1.setFont(new Font("Tahoma", 0, 12));
+  jButton1.setText("Iniciar");
+  jButton1.setFont(new Font("Tahoma", Font.PLAIN, 16));
   jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
   jButton1.setAlignmentY((float)0.0);
   jButton1.setMargin(new Insets(2, 14, 2, 12));
@@ -82,6 +82,12 @@ private void jbInit() throws Exception  {
 	botonHome.setIcon(new ImageIcon("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\imgs\\casa (1).png"));
 	botonHome.setBounds(10, 551, 50, 50);
 	getContentPane().add(botonHome);
+	
+	JButton botonGuardar = new JButton("Guardar");
+	
+	botonGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	botonGuardar.setBounds(914, 558, 130, 35);
+	getContentPane().add(botonGuardar);
 	
 	botonHome.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -115,7 +121,7 @@ private void jbInit() throws Exception  {
     });
   cargarTablero();
   colocarBomba(getAncho());
-  comprueba();
+  //comprueba();
 
   this.setVisible(true);  
 
@@ -134,7 +140,7 @@ for (int i=0;i<ancho;i++){
 colocarBomba(getAncho());
 comprueba();
 this.setTitle("Busca Minas");
-jButton1.setText("START");
+jButton1.setText("Iniciar");
 }
 //—– Inicializa el tablero a 0
 

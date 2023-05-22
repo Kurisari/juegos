@@ -53,10 +53,11 @@ public class PPT extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton botonIniciarSesion = new JButton("Iniciar Sesión");
-		botonIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonIniciarSesion.setBounds(70, 50, 130, 35);
-		contentPane.add(botonIniciarSesion);
+		JButton botonGuardar = new JButton("Guardar");
+		
+		botonGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		botonGuardar.setBounds(70, 50, 130, 35);
+		contentPane.add(botonGuardar);
 		
 		JButton botonPPT = new JButton("PP&T");
 		botonPPT.setEnabled(false);
@@ -264,6 +265,12 @@ public class PPT extends JFrame {
 				Buscaminas frame4 = new Buscaminas();
 				frame4.setVisible(true);
 				cerrar();
+			}
+		});
+		
+		botonGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		
