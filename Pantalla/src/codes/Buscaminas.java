@@ -139,6 +139,17 @@ private void jbInit() throws Exception  {
 	textoID.setText(cargarBD(config1.getProperty("usuario1")+"", "ID"));
 	getContentPane().add(textoID);
 	
+	JLabel textoScore = new JLabel((String) null);
+	textoScore.setFont(new Font("Tahoma", Font.BOLD, 16));
+	textoScore.setBounds(556, 566, 88, 35);
+	textoScore.setText(cargarPropia(config1.getProperty("usuario1")+"", "score"));
+	getContentPane().add(textoScore);
+	
+	JLabel lblNewLabel_2_1_1 = new JLabel("Score:");
+	lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	lblNewLabel_2_1_1.setBounds(487, 566, 88, 35);
+	getContentPane().add(lblNewLabel_2_1_1);
+	
 	botonHome.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Principal frame3 = new Principal();
@@ -438,6 +449,31 @@ public String cargarBD(String nombre, String propiedad) {
         
     }catch(Exception e1){
     	
+    }
+	return "";
+}
+
+public String cargarPropia(String nombre, String propiedad) {
+	try{
+		//System.out.println("Ingrese el ID del usuario");
+		String usuario = nombre;
+		
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+        PreparedStatement pst = cn.prepareStatement("select * from buscaminas where ID = ?");
+        pst.setString(1, usuario.trim());		            
+        ResultSet rs = pst.executeQuery();		            
+        if(rs.next()){
+        	//JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el usuario");
+        	//System.out.println("Se ha cargado correctamente el usuario");	
+        	return rs.getString(propiedad);
+        } else {
+        	JOptionPane.showMessageDialog(null, "No se ha registrado ese usuario");
+            //System.out.println("No se ha registrado ese usuario");
+        	return "";
+        }		 
+        
+    }catch(Exception e1){
+    	System.out.println(e1);
     }
 	return "";
 }

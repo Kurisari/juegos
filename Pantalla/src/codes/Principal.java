@@ -178,6 +178,11 @@ public class Principal extends JFrame {
 		textoID.setBounds(134, 163, 88, 35);
 		contentPane.add(textoID);
 		
+		JButton botonMostrar = new JButton("Mostrar todos");
+		botonMostrar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		botonMostrar.setBounds(764, 112, 157, 35);
+		contentPane.add(botonMostrar);
+		
 		botonNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtUsuario.setVisible(true);

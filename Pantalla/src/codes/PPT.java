@@ -166,25 +166,36 @@ public class PPT extends JFrame {
 		
 		JLabel textoUsuario = new JLabel("");
 		textoUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textoUsuario.setBounds(1040, 528, 88, 35);
+		textoUsuario.setBounds(1040, 471, 88, 35);
 		textoUsuario.setText(cargarBD(config1.getProperty("usuario1")+"", "nombre"));
 		contentPane.add(textoUsuario);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Usuario:");
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2_1.setBounds(971, 528, 88, 35);
+		lblNewLabel_2_1.setBounds(971, 471, 88, 35);
 		contentPane.add(lblNewLabel_2_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("ID:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_3.setBounds(971, 573, 59, 20);
+		lblNewLabel_3.setBounds(971, 516, 59, 20);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel textoID = new JLabel("");
 		textoID.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textoID.setBounds(1013, 566, 88, 35);
+		textoID.setBounds(1013, 509, 88, 35);
 		textoID.setText(cargarBD(config1.getProperty("usuario1")+"", "ID"));
 		contentPane.add(textoID);
+		
+		JLabel lblNewLabel_2_1_1 = new JLabel("Score:");
+		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2_1_1.setBounds(971, 548, 88, 35);
+		contentPane.add(lblNewLabel_2_1_1);
+		
+		JLabel textoScore = new JLabel((String) null);
+		textoScore.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textoScore.setBounds(1040, 548, 88, 35);
+		textoScore.setText(cargarPropia(config1.getProperty("usuario1")+"", "score"));
+		contentPane.add(textoScore);
 		
 		botonHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -380,7 +391,32 @@ public class PPT extends JFrame {
             }		 
             
         }catch(Exception e1){
-        	
+        	System.out.println(e1);
+        }
+		return "";
+	}
+	
+	public String cargarPropia(String nombre, String propiedad) {
+		try{
+			//System.out.println("Ingrese el ID del usuario");
+			String usuario = nombre;
+			
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+            PreparedStatement pst = cn.prepareStatement("select * from ppt where ID = ?");
+            pst.setString(1, usuario.trim());		            
+            ResultSet rs = pst.executeQuery();		            
+            if(rs.next()){
+            	//JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el usuario");
+            	//System.out.println("Se ha cargado correctamente el usuario");	
+            	return rs.getString(propiedad);
+            } else {
+            	JOptionPane.showMessageDialog(null, "No se ha registrado ese usuario");
+                //System.out.println("No se ha registrado ese usuario");
+            	return "";
+            }		 
+            
+        }catch(Exception e1){
+        	System.out.println(e1);
         }
 		return "";
 	}
