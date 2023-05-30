@@ -1,6 +1,8 @@
 package codes;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import java.awt.Rectangle;
@@ -9,11 +11,21 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Properties;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
 
 public class Buscaminas extends JFrame {
 private JPanel jPanel1 = new JPanel();
@@ -23,6 +35,8 @@ public int alto=8;
 public  JButton Botones[][]=new JButton [ancho][alto];
 public  String [][] elArray =new String [ancho][alto];
 int vecesJugadas = 0;
+public static Properties config1 = new Properties();
+public static InputStream configInput = null;
 
 
 public static void main (String [] args){
@@ -86,9 +100,44 @@ private void jbInit() throws Exception  {
 	
 	JButton botonGuardar = new JButton("Guardar");
 	
+	
 	botonGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 	botonGuardar.setBounds(914, 558, 130, 35);
 	getContentPane().add(botonGuardar);
+	
+	try {
+		configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\config.properties");
+		try {
+			config1.load(configInput);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	} catch (FileNotFoundException e2) {
+		e2.printStackTrace();
+	}
+	
+	JLabel textoUsuario = new JLabel("");
+	textoUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
+	textoUsuario.setBounds(169, 566, 88, 35);
+	textoUsuario.setText(cargarBD(config1.getProperty("usuario1")+"", "nombre"));
+	getContentPane().add(textoUsuario);
+	
+	JLabel lblNewLabel_2 = new JLabel("Usuario:");
+	lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	lblNewLabel_2.setBounds(100, 566, 88, 35);
+	getContentPane().add(lblNewLabel_2);
+	
+	JLabel lblNewLabel_3 = new JLabel("ID:");
+	lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	lblNewLabel_3.setBounds(314, 573, 59, 20);
+	getContentPane().add(lblNewLabel_3);
+	
+	JLabel textoID = new JLabel("");
+	textoID.setFont(new Font("Tahoma", Font.BOLD, 16));
+	textoID.setBounds(356, 566, 88, 35);
+	textoID.setText(cargarBD(config1.getProperty("usuario1")+"", "ID"));
+	getContentPane().add(textoID);
 	
 	botonHome.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -120,6 +169,33 @@ private void jbInit() throws Exception  {
         jButton1_actionPerformed(e);
       }
     });
+  
+  botonGuardar.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			vecesJugadas++;
+			try {
+			configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\config.properties");
+            config1.load(configInput);
+            
+			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+			//busca minas
+	        PreparedStatement pst_buscaminas = cn.prepareStatement("update buscaminas set score = ?, contador = ? where ID = ?");
+	        PreparedStatement pst1_buscaminas = cn.prepareStatement("select * from buscaminas");
+	        ResultSet rs_buscaminas = pst1_buscaminas.executeQuery();
+	        rs_buscaminas.next(); // Mover el cursor al primer registro de "buscaminas"
+	        int contador_buscaminas = Integer.parseInt(rs_buscaminas.getString("contador"));
+	        int score_buscaminas = Integer.parseInt(rs_buscaminas.getString("score"));
+	        contador_buscaminas++;
+            score_buscaminas += 100;
+            pst_buscaminas.setString(1, Integer.toString(score_buscaminas));
+            pst_buscaminas.setString(2, Integer.toString(contador_buscaminas));
+            pst_buscaminas.setString(3, config1.getProperty("usuario1")+"");
+            pst_buscaminas.executeUpdate();
+			} catch (Exception e1){
+				System.out.println(e1);
+			}
+		}
+	});
   cargarTablero();
   colocarBomba(getAncho());
   comprueba();
@@ -209,7 +285,7 @@ for (int i=0;i<ancho;i++){
     int numeroComprueba=0;   //el numero que voy a asignar al boton
     if (elArray[i][z]!=("B")){
       if  (z!=0 && i!=0 && z!=alto-1 && i!=ancho-1){
-        System.out.println(i+ " "+ z +" "+ ancho +" " +alto);
+        // System.out.println(i+ " "+ z +" "+ ancho +" " +alto);
 
         if (elArray[i][z-1]=="B"){
                 numeroComprueba++;
@@ -328,5 +404,41 @@ int contadorFinal=0;
   }
 void cerrar() {
 	this.dispose();
+}
+public String loadConfig(String property){
+    try{
+        configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\globalConfig.properties");
+        config1.load(configInput);
+        return config1.getProperty(property);
+        //System.out.println(config1.getProperty("password"));
+    } catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        return "";
+    }
+}
+
+public String cargarBD(String nombre, String propiedad) {
+	try{
+		//System.out.println("Ingrese el ID del usuario");
+		String usuario = nombre;
+		
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+        PreparedStatement pst = cn.prepareStatement("select * from usuario where ID = ?");
+        pst.setString(1, usuario.trim());		            
+        ResultSet rs = pst.executeQuery();		            
+        if(rs.next()){
+        	//JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el usuario");
+        	//System.out.println("Se ha cargado correctamente el usuario");	
+        	return rs.getString(propiedad);
+        } else {
+        	JOptionPane.showMessageDialog(null, "No se ha registrado ese usuario");
+            //System.out.println("No se ha registrado ese usuario");
+        	return "";
+        }		 
+        
+    }catch(Exception e1){
+    	
+    }
+	return "";
 }
 }

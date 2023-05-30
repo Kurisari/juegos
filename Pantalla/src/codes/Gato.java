@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JButton;
@@ -13,6 +14,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -28,6 +37,8 @@ public class Gato extends JFrame {
 	private static int conteoGanar = 3;
 	int contadorPartidas = 0;
 	int vecesJugadas = 0;
+	public static InputStream configInput = null;
+	public static Properties config1 = new Properties();
 
 	/**
 	 * Launch the application.
@@ -178,6 +189,40 @@ public class Gato extends JFrame {
 		botonGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonGuardar.setBounds(70, 50, 130, 35);
 		contentPane.add(botonGuardar);
+		
+		try {
+			configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\config.properties");
+			try {
+				config1.load(configInput);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
+		}
+		
+		JLabel textoUsuario = new JLabel("");
+		textoUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textoUsuario.setBounds(1040, 528, 88, 35);
+		textoUsuario.setText(cargarBD(config1.getProperty("usuario1")+"", "nombre"));
+		contentPane.add(textoUsuario);
+		
+		JLabel lblNewLabel_2 = new JLabel("Usuario:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(971, 528, 88, 35);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("ID:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_3.setBounds(971, 573, 59, 20);
+		contentPane.add(lblNewLabel_3);
+		 
+		JLabel textoID = new JLabel("");
+		textoID.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textoID.setBounds(1013, 566, 88, 35);
+		textoID.setText(cargarBD(config1.getProperty("usuario1")+"", "ID"));
+		contentPane.add(textoID);
 		
 		botonBM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1013,7 +1058,26 @@ public class Gato extends JFrame {
 		
 		botonGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\config.properties");
+		            config1.load(configInput);
+					
+					Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+					PreparedStatement pst_gato = cn.prepareStatement("update gato set score = ?, contador = ? where ID = ?");
+			        PreparedStatement pst1_gato = cn.prepareStatement("select * from gato");
+			        ResultSet rs_gato = pst1_gato.executeQuery();
+			        rs_gato.next(); // Mover el cursor al primer registro de "gato"
+			        int contador_gato = Integer.parseInt(rs_gato.getString("contador"));
+			        int score_gato = Integer.parseInt(rs_gato.getString("score"));
+			        contador_gato+=contadorPartidas;
+	                score_gato += 100*contador_gato;
+	                pst_gato.setString(1, Integer.toString(score_gato));
+	                pst_gato.setString(2, Integer.toString(contador_gato));
+	                pst_gato.setString(3, config1.getProperty("usuario1")+"");
+	                pst_gato.executeUpdate();
+				} catch (Exception e1){
+					System.out.println(e1);
+				}
 			}
 		});
 	}
@@ -1310,5 +1374,42 @@ public class Gato extends JFrame {
     
     void cerrar() {
 		this.dispose();
+	}
+    
+    public String loadConfig(String property){
+        try{
+            configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\globalConfig.properties");
+            config1.load(configInput);
+            return config1.getProperty(property);
+            //System.out.println(config1.getProperty("password"));
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return "";
+        }
+    }
+    
+    public String cargarBD(String nombre, String propiedad) {
+		try{
+			//System.out.println("Ingrese el ID del usuario");
+			String usuario = nombre;
+			
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+            PreparedStatement pst = cn.prepareStatement("select * from usuario where ID = ?");
+            pst.setString(1, usuario.trim());		            
+            ResultSet rs = pst.executeQuery();		            
+            if(rs.next()){
+            	//JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el usuario");
+            	//System.out.println("Se ha cargado correctamente el usuario");	
+            	return rs.getString(propiedad);
+            } else {
+            	JOptionPane.showMessageDialog(null, "No se ha registrado ese usuario");
+                //System.out.println("No se ha registrado ese usuario");
+            	return "";
+            }		 
+            
+        }catch(Exception e1){
+        	
+        }
+		return "";
 	}
 }
