@@ -106,7 +106,7 @@ public class Principal extends JFrame {
 		JButton botonCargar = new JButton("Cargar");
 		
 		botonCargar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		botonCargar.setBounds(493, 112, 130, 35);
+		botonCargar.setBounds(538, 112, 130, 35);
 		contentPane.add(botonCargar);
 		
 		JLabel txtUsuario = new JLabel("Usuario");
@@ -176,9 +176,37 @@ public class Principal extends JFrame {
 		contentPane.add(textoID);
 		
 		JButton botonMostrar = new JButton("Mostrar todos");
+		
 		botonMostrar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		botonMostrar.setBounds(764, 112, 157, 35);
 		contentPane.add(botonMostrar);
+		
+		JButton botonRecargar = new JButton("Refrescar");
+		
+		botonRecargar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		botonRecargar.setBounds(316, 112, 157, 35);
+		contentPane.add(botonRecargar);
+		botonRecargar.setEnabled(false);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Más jugado:");
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2_1.setBounds(92, 200, 88, 35);
+		contentPane.add(lblNewLabel_2_1);
+		
+		JLabel textoMas = new JLabel("");
+		textoMas.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textoMas.setBounds(190, 200, 130, 35);
+		contentPane.add(textoMas);
+		
+		JLabel lblNewLabel_2_2 = new JLabel("Score total:");
+		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2_2.setBounds(92, 246, 88, 35);
+		contentPane.add(lblNewLabel_2_2);
+		
+		JLabel textoScoreTotal = new JLabel("");
+		textoScoreTotal.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textoScoreTotal.setBounds(190, 246, 88, 35);
+		contentPane.add(textoScoreTotal);
 		
 		botonNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -241,6 +269,8 @@ public class Principal extends JFrame {
 			            
 			            textoID.setText(cuadroID.getText());
 		            	textoUsuario.setText(cuadroUsuario.getText());
+		            	textoMas.setText(cargarBD(cuadroID.getText(), "juego_mas"));
+		            	textoScoreTotal.setText(cargarBD(cuadroID.getText(), "score"));
 		            	cuadroUsuario.setText("");
 		            	cuadroID.setText("");
 		            	botonPPT.setEnabled(true);
@@ -251,6 +281,7 @@ public class Principal extends JFrame {
 		            	cuadroUsuario.setEnabled(false);
 		            	cuadroID.setEnabled(false);
 		            	botonContinuar.setEnabled(false);
+		            	botonRecargar.setEnabled(true);
 		            }
 		            
 		            
@@ -284,7 +315,7 @@ public class Principal extends JFrame {
 					String usuario = cuadroID.getText();
 					
 					setPropertyValue("usuario1", cuadroID.getText());
-					cuadroID.setText("");
+	            	
 		            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
 		            PreparedStatement pst = cn.prepareStatement("select * from usuario where ID = ?");
 		            pst.setString(1, usuario.trim());		            
@@ -295,6 +326,9 @@ public class Principal extends JFrame {
 		            	usuario_principal = rs.getString("ID");
 		            	textoID.setText(rs.getString("ID"));
 		            	textoUsuario.setText(rs.getString("nombre"));
+		            	textoScoreTotal.setText(rs.getString("score"));
+		            	textoMas.setText(rs.getString("juego_mas"));
+						cuadroID.setText("");
 		            	botonPPT.setEnabled(true);
 		            	botonGato.setEnabled(true);
 		            	botonBM.setEnabled(true);
@@ -303,6 +337,7 @@ public class Principal extends JFrame {
 		            	cuadroUsuario.setEnabled(false);
 		            	cuadroID.setEnabled(false);
 		            	botonContinuar2.setEnabled(false);
+		            	botonRecargar.setEnabled(true);
 		            } else {
 		            	JOptionPane.showMessageDialog(null, "No se ha registrado ese usuario");
 		                //System.out.println("No se ha registrado ese usuario");
@@ -338,12 +373,113 @@ public class Principal extends JFrame {
 			}
 		});
 		
+		botonMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+	            PreparedStatement pst = cn.prepareStatement("select * from usuario");
+	            
+	            ResultSet rs = pst.executeQuery();
+	            int columnas = 0;
+	            String texto1 = "";
+	            
+	            while(rs.next()){
+	            	columnas++;
+	            	texto1 += ("-----" + columnas + "----- \n" );
+	            	texto1 +=("ID               \t    : "+ rs.getString("ID")+ "\n");		   
+	            	texto1 +=("Nombre de usuario\t    : "+ rs.getString("nombre")+ "\n");
+	            	texto1 +=("Score            \t    : "+ rs.getString("score")+ "\n");
+	            	texto1 +=("juego mas jugado \t    : "+ rs.getString("juego_mas")+ "\n"+ "\n");
+	            	// System.out.println(texto1);      
+	            } 
+	            JOptionPane.showMessageDialog(null, texto1);
+	        }catch(Exception e1) {
+	        	
+			}
+			}
+		});
+		
+		botonRecargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				Connection cn1 = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+		        PreparedStatement pst = cn1.prepareStatement("update usuario set juego_mas = ? where ID = " + usuario_principal);
+		        PreparedStatement pst_gato = cn1.prepareStatement("select * from gato");
+		        PreparedStatement pst_PPT = cn1.prepareStatement("select * from PPT");
+		        PreparedStatement pst_buscaminas = cn1.prepareStatement("select * from buscaminas");
+		        ResultSet rs_gato = pst_gato.executeQuery();
+		        ResultSet rs_PPT = pst_PPT.executeQuery();
+		        ResultSet rs_buscaminas = pst_buscaminas.executeQuery();
+
+		        rs_gato.next(); // Mover el cursor al primer registro
+		        int contador_gato = Integer.parseInt(rs_gato.getString("contador"));
+
+		        rs_PPT.next(); // Mover el cursor al primer registro
+		        int contador_PPT = Integer.parseInt(rs_PPT.getString("contador"));
+
+		        rs_buscaminas.next(); // Mover el cursor al primer registro
+		        int contador_buscaminas = Integer.parseInt(rs_buscaminas.getString("contador"));
+
+		        if (contador_gato > contador_PPT && contador_gato > contador_buscaminas) {
+		            pst.setString(1, "Gato");
+		        } else if (contador_PPT > contador_gato && contador_PPT > contador_buscaminas) {
+		            pst.setString(1, "PPT");
+		        } else {
+		            pst.setString(1, "Busca minas");
+		        }
+
+		        pst.executeUpdate();
+		        textoMas.setText(cargarBD(loadConfig1("usuario1")+"", "juego_mas"));
+		    } catch(Exception e1){
+		        System.err.println("Error al actualizar el juego más jugado: " + e1.getMessage());
+		    }
+				
+				try {
+			        Connection cn1 = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+			        PreparedStatement pst = cn1.prepareStatement("update usuario set score = ? where ID = " + usuario_principal);
+			        PreparedStatement pst_gato = cn1.prepareStatement("select * from gato");
+			        PreparedStatement pst_PPT = cn1.prepareStatement("select * from PPT");
+			        PreparedStatement pst_buscaminas = cn1.prepareStatement("select * from buscaminas");
+			        ResultSet rs_gato = pst_gato.executeQuery();
+			        ResultSet rs_PPT = pst_PPT.executeQuery();
+			        ResultSet rs_buscaminas = pst_buscaminas.executeQuery();
+
+			        rs_gato.next(); // Mover el cursor al primer registro
+			        int contador_gato = Integer.parseInt(rs_gato.getString("score"));
+
+			        rs_PPT.next(); // Mover el cursor al primer registro
+			        int contador_PPT = Integer.parseInt(rs_PPT.getString("score"));
+
+			        rs_buscaminas.next(); // Mover el cursor al primer registro
+			        int contador_buscaminas = Integer.parseInt(rs_buscaminas.getString("score"));
+			        int contador_total = contador_gato + contador_PPT + contador_buscaminas;
+			        pst.setString(1, Integer.toString(contador_total));
+			        pst.executeUpdate();
+			        textoScoreTotal.setText(cargarBD(loadConfig1("usuario1")+"", "score"));
+			    } catch(Exception e1) {
+			    	
+			    }
+			}
+		});
+		
 		
 	}
     private JTextField cuadroID;
     public String loadConfig(String property){
         try{
             configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\globalConfig.properties");
+            config1.load(configInput);
+            return config1.getProperty(property);
+            //System.out.println(config1.getProperty("password"));
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return "";
+        }
+    }
+    
+    public String loadConfig1(String property){
+        try{
+            configInput = new FileInputStream("C:\\Users\\crisa\\workspace\\juegos\\juegos\\Pantalla\\src\\codes\\config.properties");
             config1.load(configInput);
             return config1.getProperty(property);
             //System.out.println(config1.getProperty("password"));
@@ -366,4 +502,29 @@ public class Principal extends JFrame {
             JOptionPane.showMessageDialog(null, "Error guardando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+	
+	public String cargarBD(String nombre, String propiedad) {
+		try{
+			//System.out.println("Ingrese el ID del usuario");
+			String usuario = nombre;
+			
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/proyecto", loadConfig("name"), loadConfig("password"));
+            PreparedStatement pst = cn.prepareStatement("select * from usuario where ID = ?");
+            pst.setString(1, usuario.trim());		            
+            ResultSet rs = pst.executeQuery();		            
+            if(rs.next()){
+            	//JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el usuario");
+            	//System.out.println("Se ha cargado correctamente el usuario");	
+            	return rs.getString(propiedad);
+            } else {
+            	JOptionPane.showMessageDialog(null, "No se ha registrado ese usuario");
+                //System.out.println("No se ha registrado ese usuario");
+            	return "";
+            }		 
+            
+        }catch(Exception e1){
+        	System.out.println(e1);
+        }
+		return "";
+	}
 }

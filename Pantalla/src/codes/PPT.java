@@ -346,9 +346,10 @@ public class PPT extends JFrame {
 		        contador1+= contador;
                 score += 100*contador1;
                 pst.setString(1, Integer.toString(score));
-                pst.setString(2, Integer.toString(contador));
+                pst.setString(2, Integer.toString(contador1));
                 pst.setString(3, config1.getProperty("usuario1")+"");
                 //System.out.println(config1.getProperty("usuario1")+"");
+                
                 pst.executeUpdate();
 				} catch(Exception e1) {
 					System.out.println(e1);
